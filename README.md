@@ -303,7 +303,7 @@ To ~~ridiculous~~ extravagant:
 
 Powerlevel10k comes with dozens of built-in high quality segments. When you run `p10k configure`
 and choose any style except [Pure](#pure-compatibility), many of these segments get enabled by
-default while others be manually enabled by opening `~/.p10k.zsh` and uncommenting them. You can
+default while others can be manually enabled by opening `~/.p10k.zsh` and uncommenting them. You can
 enable as many segments as you like. It won't slow down your prompt or Zsh startup.
 
 | Segment | Meaning |
@@ -404,13 +404,17 @@ Powerlevel10k.
 - [Prezto](#prezto)
 - [Zim](#zim)
 - [Antibody](#antibody)
+- [Antidote](#antidote)
 - [Antigen](#antigen)
 - [Zplug](#zplug)
 - [Zgen](#zgen)
 - [Zplugin](#zplugin)
 - [Zinit](#zinit)
+- [Zi](#zi)
 - [Homebrew](#homebrew)
 - [Arch Linux](#arch-linux)
+- [Alpine Linux](#arch-linux)
+- [Fig](#fig)
 
 ### Manual
 
@@ -457,6 +461,10 @@ Add `zmodule romkatv/powerlevel10k --use degit` to `~/.zimrc` and run `zimfw ins
 
 Add `antibody bundle romkatv/powerlevel10k` to `~/.zshrc`.
 
+### Antidote
+
+Add `romkatv/powerlevel10k` to `~/.zsh_plugins.txt`.
+
 ### Antigen
 
 Add `antigen theme romkatv/powerlevel10k` to `~/.zshrc`. Make sure you have `antigen apply`
@@ -484,6 +492,13 @@ Add `zinit ice depth=1; zinit light romkatv/powerlevel10k` to `~/.zshrc`.
 The use of `depth=1` ice is optional. Other types of ice are neither recommended nor officially
 supported by Powerlevel10k.
 
+### Zi
+
+Add `zi ice depth=1; zi light romkatv/powerlevel10k` to `~/.zshrc`.
+
+The use of `depth=1` ice is optional. Other types of ice are neither recommended nor officially
+supported by Powerlevel10k.
+
 ### Homebrew
 
 ```zsh
@@ -505,6 +520,19 @@ There is also [zsh-theme-powerlevel10k](
   https://www.archlinux.org/packages/community/x86_64/zsh-theme-powerlevel10k/) community package.
 Historically, [it has been breaking often and for extended periods of time](
   https://github.com/romkatv/powerlevel10k/pull/786). **Do not use it.**
+
+### Alpine Linux
+
+```zsh
+apk add zsh zsh-theme-powerlevel10k
+mkdir -p ~/.local/share/zsh/plugins
+ln -s /usr/share/zsh/plugins/powerlevel10k ~/.local/share/zsh/plugins/
+```
+
+### Fig
+
+Follow the instructions on
+[this page](https://fig.io/plugins/other/powerlevel10k).
 
 ## Configuration
 
@@ -624,11 +652,9 @@ If you are using a different terminal, proceed with manual font installation. �
      *Custom font* under *Text Appearance* and select `MesloLGS NF Regular`.
    - **Windows Console Host** (the old thing): Click the icon in the top left corner, then
      *Properties → Font* and set *Font* to `MesloLGS NF`.
-   - **Windows Terminal** by Microsoft (the new thing): Open `settings.json` (<kbd>Ctrl+Shift+,</kbd>),
-     search for `fontFace` and set the value to `MesloLGS NF` for every profile. If you don't find
-     `fontFace`, add it under *profiles → defaults*. See [this settings file](
-       https://raw.githubusercontent.com/romkatv/dotfiles-public/aba0e6c4657d705ed6c344d700d659977385f25c/dotfiles/microsoft-terminal-settings.json)
-     for example.
+   - **Windows Terminal** by Microsoft (the new thing): Open *Settings* (<kbd>Ctrl+,</kbd>), click
+     either on the selected profile under *Profiles* or on *Defaults*, click *Appearance* and set
+     *Font face* to `MesloLGS NF`.
    - **IntelliJ** (and other IDEs by Jet Brains): Open *IDE → Edit → Preferences → Editor →
      Color Scheme → Console Font*. Select *Use console font instead of the default* and set the font
      name to `MesloLGS NF`.
@@ -689,6 +715,36 @@ If you are using a different terminal, proceed with manual font installation. �
      ```
      After changing the config run `xrdb ~/.Xresources` to reload it. The new config is applied to
      all new terminals.
+   - Crostini (Linux on Chrome OS): Open
+     chrome-untrusted://terminal/html/nassh_preferences_editor.html, set *Text font family* to
+      `'MesloLGS NF'` (including the quotes) and *Custom CSS (inline text)* to the following:
+     ```css
+     @font-face {
+      font-family: "MesloLGS NF";
+      src: url("https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf");
+      font-weight: normal;
+      font-style: normal;
+     }
+     @font-face {
+         font-family: "MesloLGS NF";
+         src: url("https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Bold.ttf");
+         font-weight: bold;
+         font-style: normal;
+     }
+     @font-face {
+         font-family: "MesloLGS NF";
+         src: url("https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Italic.ttf");
+         font-weight: normal;
+         font-style: italic;
+     }
+     @font-face {
+         font-family: "MesloLGS NF";
+         src: url("https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/MesloLGS%20NF%20Bold%20Italic.ttf");
+         font-weight: bold;
+         font-style: italic;
+     }
+     ```
+     **_CAVEAT_**: If you open the normal terminal preferences these settings will be overwritten.
 1. Run `p10k configure` to generate a new `~/.p10k.zsh`. The old config may work
    incorrectly with the new font.
 
@@ -755,19 +811,22 @@ Powerlevel10k is released under the
 
 The command to update Powerlevel10k depends on how it was installed.
 
-| Installation              | Update command                                              |
-|---------------------------|-------------------------------------------------------------|
-| [Manual](#manual)         | `git -C ~/powerlevel10k pull`                               |
-| [Oh My Zsh](#oh-my-zsh)   | `git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull` |
-| [Prezto](#prezto)         | `zprezto-update`                                            |
-| [Zim](#zim)               | `zimfw update`                                              |
-| [Antigen](#antigen)       | `antigen update`                                            |
-| [Zplug](#zplug)           | `zplug update`                                              |
-| [Zgen](#zgen)             | `zgen update`                                               |
-| [Zplugin](#zplugin)       | `zplugin update`                                            |
-| [Zinit](#zinit)           | `zinit update`                                              |
-| [Homebrew](#homebrew)     | `brew update && brew upgrade`                               |
-| [Arch Linux](#arch-linux) | `yay -S --noconfirm zsh-theme-powerlevel10k-git`            |
+| Installation                  | Update command                                              |
+|-------------------------------|-------------------------------------------------------------|
+| [Manual](#manual)             | `git -C ~/powerlevel10k pull`                               |
+| [Oh My Zsh](#oh-my-zsh)       | `git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull` |
+| [Prezto](#prezto)             | `zprezto-update`                                            |
+| [Zim](#zim)                   | `zimfw update`                                              |
+| [Antigen](#antigen)           | `antigen update`                                            |
+| [Antidote](#antidote)         | `antidote update`                                           |
+| [Zplug](#zplug)               | `zplug update`                                              |
+| [Zgen](#zgen)                 | `zgen update`                                               |
+| [Zplugin](#zplugin)           | `zplugin update`                                            |
+| [Zinit](#zinit)               | `zinit update`                                              |
+| [Zi](#zi)                     | `zi update`                                                 |
+| [Homebrew](#homebrew)         | `brew update && brew upgrade`                               |
+| [Arch Linux](#arch-linux)     | `yay -S --noconfirm zsh-theme-powerlevel10k-git`            |
+| [Alpine Linux](#alpine-linux) | `apk update && apk upgrade`                                 |
 
 **IMPORTANT**: Restart Zsh after updating Powerlevel10k. [Do not use `source ~/.zshrc`](
   #weird-things-happen-after-typing-source-zshrc).
@@ -805,19 +864,22 @@ The command to update Powerlevel10k depends on how it was installed.
    Powerlevel10k. The command to delete them depends on which installation method you'd chosen.
    Refer to the [installation instructions](#installation) if you need a reminder.
 
-   | Installation              | Uninstall command                                                |
-   |---------------------------|------------------------------------------------------------------|
-   | [Manual](#manual)         | `rm -rf ~/powerlevel10k`                                         |
-   | [Oh My Zsh](#oh-my-zsh)   | `rm -rf -- ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k` |
-   | [Prezto](#prezto)         | n/a                                                              |
-   | [Zim](#zim)               | `zimfw uninstall`                                                |
-   | [Antigen](#antigen)       | `antigen purge romkatv/powerlevel10k`                            |
-   | [Zplug](#zplug)           | `zplug clean`                                                    |
-   | [Zgen](#zgen)             | `zgen reset`                                                     |
-   | [Zplugin](#zplugin)       | `zplugin delete romkatv/powerlevel10k`                           |
-   | [Zinit](#zinit)           | `zinit delete romkatv/powerlevel10k`                             |
-   | [Homebrew](#homebrew)     | `brew uninstall powerlevel10k; brew untap romkatv/powerlevel10k` |
-   | [Arch Linux](#arch-linux) | `yay -R --noconfirm zsh-theme-powerlevel10k-git`                 |
+   | Installation                  | Uninstall command                                                |
+   |-------------------------------|------------------------------------------------------------------|
+   | [Manual](#manual)             | `rm -rf ~/powerlevel10k`                                         |
+   | [Oh My Zsh](#oh-my-zsh)       | `rm -rf -- ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k` |
+   | [Prezto](#prezto)             | n/a                                                              |
+   | [Zim](#zim)                   | `zimfw uninstall`                                                |
+   | [Antigen](#antigen)           | `antigen purge romkatv/powerlevel10k`                            |
+   | [Antidote](#antidote)         | `antidote purge romkatv/powerlevel10k`                           |
+   | [Zplug](#zplug)               | `zplug clean`                                                    |
+   | [Zgen](#zgen)                 | `zgen reset`                                                     |
+   | [Zplugin](#zplugin)           | `zplugin delete romkatv/powerlevel10k`                           |
+   | [Zinit](#zinit)               | `zinit delete romkatv/powerlevel10k`                             |
+   | [Zi](#zi)                     | `zi delete romkatv/powerlevel10k`                                |
+   | [Homebrew](#homebrew)         | `brew uninstall powerlevel10k; brew untap romkatv/powerlevel10k` |
+   | [Arch Linux](#arch-linux)     | `yay -R --noconfirm zsh-theme-powerlevel10k-git`                 |
+   | [Alpine Linux](#alpine-linux) | `apk del zsh-theme-powerlevel10k`                                |
 6. Restart Zsh. [Do not use `source ~/.zshrc`](#weird-things-happen-after-typing-source-zshrc).
 7. Delete Powerlevel10k cache files.
    ```zsh
