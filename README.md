@@ -456,15 +456,15 @@ make sure to disable the current theme in your plugin manager. See
 
 1. Clone the repository:
     ```zsh
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
     ```
     Users in China can use the official mirror on gitee.com for faster download.<br>
     中国用户可以使用 gitee.com 上的官方镜像加速下载.
 
     ```zsh
-    git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
     ```
-2. Set `ZSH_THEME="powerlevel10k/powerlevel10k"` in `~/.zshrc`.
+2. Open `~/.zshrc`, find the line that sets `ZSH_THEME`, and change its value to `"powerlevel10k/powerlevel10k"`.
 
 ### Prezto
 
@@ -536,11 +536,6 @@ echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zs
 
 [zsh-theme-powerlevel10k-git](https://aur.archlinux.org/packages/zsh-theme-powerlevel10k-git/)
 referenced above is the official Powerlevel10k package.
-
-There is also [zsh-theme-powerlevel10k](
-  https://www.archlinux.org/packages/extra/x86_64/zsh-theme-powerlevel10k/) package.
-Historically, [it has been breaking often and for extended periods of time](
-  https://github.com/romkatv/powerlevel10k/pull/786). **Do not use it.**
 
 ### Alpine Linux
 
@@ -699,6 +694,8 @@ If you are using a different terminal, proceed with manual font installation. �
      *Use these personal options* and change *Font:* under *Terminal UI* to `MesloLGS NF Regular`.
      To change the font for the remote host connections, go to *Preferences → Terminal Options →
      Look and Feel* and change *Font:* under *Terminal UI* to `MesloLGS NF Regular`.
+   - **Warp**: Open Warp and Navigate to *Settings* then *Appearance*.  Scroll down to *Text* Section
+     and under *"Terminal Font"*, select the `MesloLGS NF` font.
    - **WSLtty**: Right click on an open terminal and then on *Options*. In the *Text* section, under
      *Font*, click *"Select..."* and set Font to `MesloLGS NF Regular`.
    - **Yakuake**: Click *≡* → *Manage Profiles* → *New* → *Appearance*. Click *Choose* next to the
@@ -787,6 +784,11 @@ If you are using a different terminal, proceed with manual font installation. �
      [basic.interface.font]
      value = "MesloLGS NF"
      ```
+   - **Ghostty**: Open *Menu → Open Configuration* (Linux) or *Ghostty → Settings...* (Mac) and add
+     the following line:
+     ```text
+     font-family = "MesloLGS NF"
+     ```
 1. Run `p10k configure` to generate a new `~/.p10k.zsh`. The old config may work
    incorrectly with the new font.
 
@@ -856,7 +858,7 @@ The command to update Powerlevel10k depends on how it was installed.
 | Installation                  | Update command                                              |
 |-------------------------------|-------------------------------------------------------------|
 | [Manual](#manual)             | `git -C ~/powerlevel10k pull`                               |
-| [Oh My Zsh](#oh-my-zsh)       | `git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull` |
+| [Oh My Zsh](#oh-my-zsh)       | `git -C "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" pull` |
 | [Prezto](#prezto)             | `zprezto-update`                                            |
 | [Zim](#zim)                   | `zimfw update`                                              |
 | [Antigen](#antigen)           | `antigen update`                                            |
@@ -910,7 +912,7 @@ The command to update Powerlevel10k depends on how it was installed.
    | Installation                  | Uninstall command                                                |
    |-------------------------------|------------------------------------------------------------------|
    | [Manual](#manual)             | `rm -rf ~/powerlevel10k`                                         |
-   | [Oh My Zsh](#oh-my-zsh)       | `rm -rf -- ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k` |
+   | [Oh My Zsh](#oh-my-zsh)       | `rm -rf -- "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"` |
    | [Prezto](#prezto)             | n/a                                                              |
    | [Zim](#zim)                   | `zimfw uninstall`                                                |
    | [Antigen](#antigen)           | `antigen purge romkatv/powerlevel10k`                            |
@@ -1002,7 +1004,7 @@ Powerlevel10k does not affect:
 1. Run this command:
 ```zsh
 # Add powerlevel10k to the list of Oh My Zsh themes.
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 # Replace ZSH_THEME="powerlevel9k/powerlevel9k" with ZSH_THEME="powerlevel10k/powerlevel10k".
 sed -i.bak 's/powerlevel9k/powerlevel10k/g' ~/.zshrc
 # Restart Zsh.
@@ -1573,7 +1575,7 @@ When opening a terminal, or starting zsh manually, you may encounter this error 
    - If `typeset -p P9K_VERSION` fails with the error `typeset: no such variable: P9K_VERSION`, run
      the following command:
      ```zsh
-     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
      ```
 2. Restart Zsh with `exec zsh`.
 
