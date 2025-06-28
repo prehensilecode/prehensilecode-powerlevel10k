@@ -4287,6 +4287,19 @@ function _p9k_parse_virtualenv_cfg() {
 }
 
 ################################################################
+# Spackenv: current working Spack env
+prompt_spackenv() {
+  local msg=''
+  local v=${SPACK_ENV:t}
+  msg+="$_POWERLEVEL9K_SPACKENV_LEFT_DELIMITER${v}$_POWERLEVEL9K_SPACKENV_RIGHT_DELIMITER"
+  _p9k_prompt_segment "$0" "purple" "$_p9k_color1" "(s)" 0 '' "$msg"
+}
+
+_p9k_prompt_spackenv_init() {
+  typeset -g "_p9k__segment_cond_${_p9k__prompt_side}[_p9k__segment_index]"='$SPACK_ENV'
+}
+
+################################################################
 # Virtualenv: current working virtualenv
 # More information on virtualenv (Python):
 # https://virtualenv.pypa.io/en/latest/
@@ -7746,6 +7759,8 @@ _p9k_init_params() {
   _p9k_declare -e POWERLEVEL9K_VI_VISUAL_MODE_STRING
   # OVERWRITE mode is shown as INSERT unless POWERLEVEL9K_VI_OVERWRITE_MODE_STRING is explicitly set.
   _p9k_declare -e POWERLEVEL9K_VI_OVERWRITE_MODE_STRING
+  _p9k_declare -e POWERLEVEL9K_SPACKENV_LEFT_DELIMITER "("
+  _p9k_declare -e POWERLEVEL9K_SPACKENV_RIGHT_DELIMITER ")"
   _p9k_declare -s POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV true
   _p9k_declare -b POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION 1
   _p9k_declare -e POWERLEVEL9K_VIRTUALENV_LEFT_DELIMITER "("

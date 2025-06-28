@@ -68,6 +68,7 @@
     perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
     phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+    spackenv                # spack environmenv from spack (https://spack.io)
     haskell_stack           # haskell version from stack (https://haskellstack.org/)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     terraform               # terraform workspace (https://www.terraform.io)
@@ -1207,6 +1208,14 @@
   typeset -g POWERLEVEL9K_SCALAENV_SHOW_SYSTEM=true
   # Custom icon.
   # typeset -g POWERLEVEL9K_SCALAENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  #
+  #######[ spackenv: spack environment from spack (https://spack.io) ]#######
+  # Spack environment color.
+  typeset -g POWERLEVEL9K_SPACKENV_FOREGROUND=0
+  typeset -g POWERLEVEL9K_SPACKENV_BACKGROUND=5
+  typeset -g POWERLEVEL9K_SPACKENV_{LEFT,RIGHT}_DELIMITER=
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_SPACKENV_VISUAL_IDENTIFIER_EXPANSION='🌿'
 
   ##########[ haskell_stack: haskell version from stack (https://haskellstack.org/) ]###########
   # Haskell color.

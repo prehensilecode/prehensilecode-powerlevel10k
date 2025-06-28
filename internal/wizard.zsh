@@ -1903,7 +1903,7 @@ function generate_config() {
 
   if (( $+pure_use_rprompt )); then
     local segment
-    for segment in command_execution_time virtualenv context; do
+    for segment in command_execution_time spackenv virtualenv context; do
       rep "    $segment" "    tmp_$segment"
       uncomment $segment
       rep "    tmp_$segment  " "    # $segment"

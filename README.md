@@ -368,6 +368,7 @@ You can enable as many segments as you like. It won't slow down your prompt or Z
 | `rust_version` | [rustc](https://www.rust-lang.org) version |
 | `rvm` | ruby environment from [rvm](https://rvm.io) |
 | `scalaenv` | scala version from [scalaenv](https://github.com/scalaenv/scalaenv) |
+| `spackenv` | spack environment from [spack](https://spack.io) |
 | `status` | exit code of the last command |
 | `swap` | used swap |
 | `taskwarrior` | [taskwarrior](https://taskwarrior.org/) task count |

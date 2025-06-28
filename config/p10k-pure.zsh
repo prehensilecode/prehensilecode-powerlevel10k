@@ -49,6 +49,7 @@
     command_execution_time    # previous command duration
     # =========================[ Line #2 ]=========================
     newline                   # \n
+    spackenv                  # spack environment
     virtualenv                # python virtual environment
     prompt_char               # prompt symbol
   )
@@ -87,6 +88,11 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='❮'
   # Prompt symbol in overwrite vi mode is the same as in command mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=false
+
+  # Cyan Spack environment
+  typeset -g POWERLEVEL9K_SPACKENV_FOREGROUND=$black
+  typeset -g POWERLEVEL9K_SPACKENV_BACKGROUND=$cyan
+  typeset -g POWERLEVEL9K_SPACKENV_{LEFT,RIGHT}_DELIMITER=
 
   # Grey Python Virtual Environment.
   typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$grey
